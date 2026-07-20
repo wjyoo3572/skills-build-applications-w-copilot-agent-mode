@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --esm --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "seed": "ts-node --esm src/scripts/seed.ts"
+    "seed": "npm run build && node dist/scripts/seed.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
