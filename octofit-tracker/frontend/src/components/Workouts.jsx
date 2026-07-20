@@ -1,7 +1,9 @@
-import { apiUrl } from '../api'
 import ResourceTable from './ResourceTable'
 
-const endpoint = apiUrl('/api/workouts/')
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const endpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/workouts/`
+  : 'http://localhost:8000/api/workouts/'
 
 export default function Workouts() {
   return (

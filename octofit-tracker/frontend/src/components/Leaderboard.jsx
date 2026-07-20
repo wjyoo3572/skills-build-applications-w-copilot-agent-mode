@@ -1,7 +1,9 @@
-import { apiUrl } from '../api'
 import ResourceTable from './ResourceTable'
 
-const endpoint = apiUrl('/api/leaderboard/')
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const endpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/'
 
 export default function Leaderboard() {
   return (
