@@ -7,6 +7,7 @@ export default function Leaderboard() {
   return (
     <ResourceTable
       endpoint={endpoint}
+      responseKey="leaderboard"
       title="Leaderboard"
       columns={[
         { key: 'rank', label: 'Rank' },

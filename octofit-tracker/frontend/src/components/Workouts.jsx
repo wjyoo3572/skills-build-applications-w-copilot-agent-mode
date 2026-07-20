@@ -7,11 +7,17 @@ export default function Workouts() {
   return (
     <ResourceTable
       endpoint={endpoint}
+      responseKey="workouts"
       title="Workouts"
       columns={[
-        { key: 'name', label: 'Name' },
+        { key: 'title', label: 'Workout' },
         { key: 'description', label: 'Description' },
-        { key: 'suggested_for', label: 'Suggested for' },
+        { key: 'difficulty', label: 'Difficulty' },
+        {
+          key: 'durationMinutes',
+          label: 'Duration',
+          render: ({ durationMinutes }) => `${durationMinutes} min`,
+        },
       ]}
     />
   )

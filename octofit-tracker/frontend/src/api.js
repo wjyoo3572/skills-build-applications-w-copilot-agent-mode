@@ -10,10 +10,14 @@ export function apiUrl(path) {
   return `${API_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
 }
 
-export function normalizeCollection(payload) {
+export function normalizeCollection(payload, collectionKey) {
   if (Array.isArray(payload)) {
     return payload
   }
 
-  return Array.isArray(payload?.results) ? payload.results : []
+  if (Array.isArray(payload?.results)) {
+    return payload.results
+  }
+
+  return Array.isArray(payload?.[collectionKey]) ? payload[collectionKey] : []
 }
