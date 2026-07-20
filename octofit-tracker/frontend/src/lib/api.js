@@ -1,4 +1,4 @@
-export const apiBaseUrl = '/api';
+export const apiBaseUrl = '';
 
 export function normalizeApiResponse(payload, key) {
   if (Array.isArray(payload)) {

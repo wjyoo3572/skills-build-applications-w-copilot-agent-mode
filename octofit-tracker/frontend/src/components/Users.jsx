@@ -7,7 +7,7 @@ function Users() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const endpointPath = '/users/';
+    const endpointPath = '/api/users/';
     fetch(`${apiBaseUrl}${endpointPath}`)
       .then((res) => res.json())
       .then((data) => setUsers(normalizeApiResponse(data, 'users')))

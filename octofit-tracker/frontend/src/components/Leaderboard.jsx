@@ -7,7 +7,7 @@ function Leaderboard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const endpointPath = '/leaderboard/';
+    const endpointPath = '/api/leaderboard/';
     fetch(`${apiBaseUrl}${endpointPath}`)
       .then((res) => res.json())
       .then((data) => setLeaderboard(normalizeApiResponse(data, 'leaderboard')))

@@ -7,7 +7,7 @@ function Teams() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const endpointPath = '/teams/';
+    const endpointPath = '/api/teams/';
     fetch(`${apiBaseUrl}${endpointPath}`)
       .then((res) => res.json())
       .then((data) => setTeams(normalizeApiResponse(data, 'teams')))
