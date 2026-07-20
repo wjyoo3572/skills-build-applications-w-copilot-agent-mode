@@ -1,12 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import db from './config/database.ts';
-import usersRouter from './routes/users.ts';
-import teamsRouter from './routes/teams.ts';
-import activitiesRouter from './routes/activities.ts';
-import leaderboardRouter from './routes/leaderboard.ts';
-import workoutsRouter from './routes/workouts.ts';
+import db from './config/database.js';
+import usersRouter from './routes/users.js';
+import teamsRouter from './routes/teams.js';
+import activitiesRouter from './routes/activities.js';
+import leaderboardRouter from './routes/leaderboard.js';
+import workoutsRouter from './routes/workouts.js';
 
 dotenv.config();
 

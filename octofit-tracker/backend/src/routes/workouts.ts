@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import WorkoutModel from '../models/Workout.ts';
+import WorkoutModel from '../models/Workout.js';
 
 const router = Router();
 
