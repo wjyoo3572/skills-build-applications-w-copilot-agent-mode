@@ -1,0 +1,11 @@
+body {
+  background: #f7f8fa;
+}
+
+.navbar-brand img {
+  object-fit: contain;
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
