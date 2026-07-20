@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { apiBaseUrl, normalizeApiResponse } from '../lib/api';
-
-interface LeaderboardEntry {
-  _id: string;
-  rank: number;
-  score: number;
-  season: string;
-  user?: { name: string };
-  team?: { name: string };
-}
+import { apiBaseUrl, normalizeApiResponse } from '../lib/api.js';
 
 function Leaderboard() {
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`${apiBaseUrl}/leaderboard/`)
       .then((res) => res.json())
-      .then((data) => setLeaderboard(normalizeApiResponse<LeaderboardEntry>(data, 'leaderboard')))
+      .then((data) => setLeaderboard(normalizeApiResponse(data, 'leaderboard')))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);

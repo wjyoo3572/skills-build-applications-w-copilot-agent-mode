@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { apiBaseUrl, normalizeApiResponse } from '../lib/api';
-
-interface Team {
-  _id: string;
-  name: string;
-  description: string;
-  members?: Array<{ _id: string; name: string }>;
-}
+import { apiBaseUrl, normalizeApiResponse } from '../lib/api.js';
 
 function Teams() {
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`${apiBaseUrl}/teams/`)
       .then((res) => res.json())
-      .then((data) => setTeams(normalizeApiResponse<Team>(data, 'teams')))
+      .then((data) => setTeams(normalizeApiResponse(data, 'teams')))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);

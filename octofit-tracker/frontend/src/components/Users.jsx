@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { apiBaseUrl, normalizeApiResponse } from '../lib/api';
-
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  role: string;
-  team?: { name: string };
-}
+import { apiBaseUrl, normalizeApiResponse } from '../lib/api.js';
 
 function Users() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`${apiBaseUrl}/users/`)
       .then((res) => res.json())
-      .then((data) => {
-        setUsers(normalizeApiResponse<User>(data, 'users'));
-      })
+      .then((data) => setUsers(normalizeApiResponse(data, 'users')))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);

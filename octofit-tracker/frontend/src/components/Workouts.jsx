@@ -1,25 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { apiBaseUrl, normalizeApiResponse } from '../lib/api';
-
-interface Workout {
-  _id: string;
-  title: string;
-  description: string;
-  difficulty: string;
-  durationMinutes: number;
-  scheduledAt: string;
-  exercises: string[];
-}
+import { apiBaseUrl, normalizeApiResponse } from '../lib/api.js';
 
 function Workouts() {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`${apiBaseUrl}/workouts/`)
       .then((res) => res.json())
-      .then((data) => setWorkouts(normalizeApiResponse<Workout>(data, 'workouts')))
+      .then((data) => setWorkouts(normalizeApiResponse(data, 'workouts')))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
@@ -44,7 +34,7 @@ function Workouts() {
               <strong>Scheduled:</strong> {new Date(workout.scheduledAt).toLocaleString()}
             </p>
             <p>
-              <strong>Exercises:</strong> {workout.exercises.join(', ')}
+              <strong>Exercises:</strong> {workout.exercises?.join(', ') || 'None'}
             </p>
           </div>
         ))}

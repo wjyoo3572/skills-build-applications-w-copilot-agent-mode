@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { apiBaseUrl, normalizeApiResponse } from '../lib/api';
-
-interface Activity {
-  _id: string;
-  type: string;
-  durationMinutes: number;
-  distanceKm: number;
-  caloriesBurned: number;
-  date: string;
-  user?: { name: string };
-  team?: { name: string };
-}
+import { apiBaseUrl, normalizeApiResponse } from '../lib/api.js';
 
 function Activities() {
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`${apiBaseUrl}/activities/`)
       .then((res) => res.json())
-      .then((data) => setActivities(normalizeApiResponse<Activity>(data, 'activities')))
+      .then((data) => setActivities(normalizeApiResponse(data, 'activities')))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
