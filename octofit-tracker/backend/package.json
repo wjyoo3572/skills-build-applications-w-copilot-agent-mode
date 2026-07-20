@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --esm --respawn --transpile-only src/index.ts",
+    "dev": "ts-node-dev --esm --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "seed": "ts-node --esm src/scripts/seed.ts"
   },
   "dependencies": {

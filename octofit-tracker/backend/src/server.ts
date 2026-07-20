@@ -35,7 +35,7 @@ app.get('/api/health', (_req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
   if (codespaceName) {
-    console.log(`Codespaces API URL: https://${apiHost}`);
+    console.log(`Codespaces API URL: ${apiBaseUrl}`);
   }
 });
 
