@@ -7,7 +7,8 @@ function Activities() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${apiBaseUrl}/activities/`)
+    const endpointPath = '/activities/';
+    fetch(`${apiBaseUrl}${endpointPath}`)
       .then((res) => res.json())
       .then((data) => setActivities(normalizeApiResponse(data, 'activities')))
       .catch((err) => setError(err.message))

@@ -7,7 +7,8 @@ function Workouts() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${apiBaseUrl}/workouts/`)
+    const endpointPath = '/workouts/';
+    fetch(`${apiBaseUrl}${endpointPath}`)
       .then((res) => res.json())
       .then((data) => setWorkouts(normalizeApiResponse(data, 'workouts')))
       .catch((err) => setError(err.message))
