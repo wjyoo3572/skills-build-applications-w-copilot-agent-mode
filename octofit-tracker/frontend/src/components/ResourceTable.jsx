@@ -9,7 +9,7 @@ function displayValue(value) {
   return String(value)
 }
 
-export default function ResourceTable({ endpoint, title, columns }) {
+export default function ResourceTable({ endpoint, responseKey, title, columns }) {
   const [items, setItems] = useState([])
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -25,7 +25,7 @@ export default function ResourceTable({ endpoint, title, columns }) {
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`)
         }
-        setItems(normalizeCollection(await response.json()))
+        setItems(normalizeCollection(await response.json(), responseKey))
       } catch (requestError) {
         if (requestError.name !== 'AbortError') {
           setError(requestError.message)
@@ -37,7 +37,7 @@ export default function ResourceTable({ endpoint, title, columns }) {
 
     loadItems()
     return () => controller.abort()
-  }, [endpoint])
+  }, [endpoint, responseKey])
 
   if (loading) return <p className="alert alert-info">Loading {title.toLowerCase()}…</p>
   if (error) return <p className="alert alert-danger">Unable to load {title.toLowerCase()}: {error}</p>

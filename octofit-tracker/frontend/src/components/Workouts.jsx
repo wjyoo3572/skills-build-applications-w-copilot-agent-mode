@@ -1,17 +1,25 @@
-import { apiUrl } from '../api'
 import ResourceTable from './ResourceTable'
 
-const endpoint = apiUrl('/api/workouts/')
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
+const endpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/workouts/`
+  : 'http://localhost:8000/api/workouts/'
 
 export default function Workouts() {
   return (
     <ResourceTable
       endpoint={endpoint}
+      responseKey="workouts"
       title="Workouts"
       columns={[
-        { key: 'name', label: 'Name' },
+        { key: 'title', label: 'Workout' },
         { key: 'description', label: 'Description' },
-        { key: 'suggested_for', label: 'Suggested for' },
+        { key: 'difficulty', label: 'Difficulty' },
+        {
+          key: 'durationMinutes',
+          label: 'Duration',
+          render: ({ durationMinutes }) => `${durationMinutes} min`,
+        },
       ]}
     />
   )
